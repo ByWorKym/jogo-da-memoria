@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/Icon 4.png" type="image/x-icon">
+    <style>
+        /* Estilização do botão de mute */
+        #muteButton {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            background-color: #0066cc;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #muteButton:hover {
+            background-color: #004080;
+        }
+
+        /* Estilos do Modal de Parabéns */
+        #parabensModal, #falhaModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-radius: 10px;
+            z-index: 2000;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        #parabensModal h2, #falhaModal h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        #parabensModal p, #falhaModal p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        #parabensModal button, #falhaModal button {
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #falhaModal button {
+            background-color: #cc0000;
+        }
+
+        /* Estilo para o botão "Verificar Quebra-Cabeça" */
+        #verificarButton {
+            background-color: #007BFF;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        #verificarButton:hover {
+            background-color: #0056b3;
+        }
+
+        #verificarButton:active {
+            background-color: #004080;
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <nav class="menu">
+        <div class="navegacao">
+            <a href="https://autplay.framer.website/">Sobre</a>
+            <a href="https://autplay.framer.website/Alunos">Aluno</a>
+            <a href="https://autplay.framer.website/Professor">Professor</a>
+            <a href="https://autplay.framer.website/Pais">Pais</a>
+            <a href="https://autplay.framer.website/Doa%C3%A7%C3%A3o">Doação</a>
+        </div>
+        <div class="logo">
+            <img src="assets/Logo sem slogan.png" alt="Logo do Projeto" />
+        </div>
+        <div class="acessibilidade">
+            <button id="zoom">🔍 Zoom</button>
+            <button id="alto-contraste">🔳 Alto Contraste</button>
+            <button id="escala-cinza">⚫ Escala de Cinza</button>
+        </div>
+    </nav>
+
+    <h1>JOGO DA MEMÓRIA</h1>
+    <div class="grid-container"></div>
+    <p>Tentativas: <span class="score">0</span></p>
+    <div class="actions">
+        <button id="verificarButton" onclick="verificarJogo()">Verificar</button>
+    </div>
+
+    <audio id="musicaDeFundo" loop>
+        <source src="assets/lofi-song-jinsei-by-lofium-236730.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <button id="muteButton">🔊</button>
+
+    <div id="parabensModal">
+        <h2>Parabéns!</h2>
+        <p>Você concluiu a sua missão! 😎</p>
+        <button onclick="closeParabensModal()">FECHAR</button>
+        <button onclick="shufflePuzzle()">JOGAR NOVAMENTE</button>
+    </div>
+
+    <div id="falhaModal">
+        <h2>Continue Jogando!</h2>
+        <p>Ainda há pares a serem encontrados!😔</p>
+        <button onclick="closeFalhaModal()">FECHAR</button>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    });
+</script>
+
+    <script src="script.js"></script>
+</body>
+</html>
